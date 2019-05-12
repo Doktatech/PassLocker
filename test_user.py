@@ -14,6 +14,6 @@ class TestUser (unittest.TestCase):
         Test if the app is saving users into the list
         """
         self.new_user.save_user()
-        self.assertEqual(len(User.user_list),1)
+        self.assertEqual(len(User.user_list),1) 
 if __name__ == '__main__':
     unittest.main()
