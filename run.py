@@ -12,7 +12,7 @@ def save_user(user):
     Function for saving user
     """
     user.save_user()
-def find_user(account):
+def find_user(username):
     """
     Function for finding user using username
     """
@@ -36,7 +36,7 @@ def main():
     print("Kaaribu, " + prom + ", To get you started up kindly choose one of the following")
     print(" ")    
     while True:
-        print("Use these any of these short codes : \n ca - create an account\n da - display username\n fu - find a user\n ex - exit the user list ")
+        print("Use any of these short codes : \n ca - create an account\n da - display username\n fu - find a user\n ex - exit the user list ")
         print(" ")
         short_code = input('Enter : ').lower().strip()
         if short_code == 'ca':
@@ -59,15 +59,33 @@ def main():
             print("\033[1;35;1m  \n")
         elif short_code == "da":
             if display_users():
-                print("Here is a list of all your Accounts")
-                print("\n")               
-                user = User.display_user()
-                print("\033[1;37;1m  \n")
-                print(f"Site: {user.account} \n User Name: {user.username} \n Password: {user.password}")
+                print("Here is a list of saved Accounts")
+                print("\n") 
+                for user in display_users():              
+               #  user = User.display_user()
+               #  print("\033[1;37;1m  \n")
+                  print(f"Site: {user.account} \n User Name: {user.username} \n Password: {user.password}")
                   
             else:
                 print("\033[1;35;1m  \n")
                 print(" ")
-                print("You don't seem to have any accounts created yet")       
+                print("You don't seem to have any accounts created yet")  
+        elif short_code == "fu":
+            print("Enter the username you want to search for")
+            search_username= input()
+            if find_user(search_username):
+               search_user = find_user(search_username)
+               print(f"{search_user.username} ")
+               print('-' * 30)
+               print(f"Username.......{search_user.username}")
+               print(f"Email address.......{search_user.email}")
+            else:
+               print("That contact does not exist")
+        elif short_code == "ex":
+            print("Bye .......")
+            break
+        else:
+            print("I really didn't get that. Please use the short codes")
+
 if __name__ == '__main__':
 	main()
