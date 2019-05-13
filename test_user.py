@@ -52,7 +52,11 @@ class TestUser (unittest.TestCase):
         test_user.save_user()
         user_exists=User.user_exists ("NetFlix")
         self.assertTrue(user_exists)
-        
+    def test_display_users (self):
+        """
+        Test method that returns all users in the list
+        """
+        self.assertEqual(User.display_users(),User.user_list)
 
 if __name__ == '__main__':
     unittest.main()
