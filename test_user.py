@@ -8,7 +8,7 @@ class TestUser (unittest.TestCase):
         """
         First test to check if object is being initialized
         """
-        self.new_user= User ("Instagram", "Duke", "12345")
+        self.new_user= User ("NightKing", "Duke", "12345","email")
     def tearDown(self):
         """
         This method cleans up everything after each test
@@ -25,7 +25,7 @@ class TestUser (unittest.TestCase):
         A test method that checks if we can save multiple users
         """
         self.new_user.save_user()        
-        test_user = User("Instagram", "Duke", "12345")
+        test_user = User("NightKing", "Duke", "12345","email")
         test_user.save_user()
         self.assertEqual(len(User.user_list),2)
     def test_delete_user(self):
@@ -33,9 +33,18 @@ class TestUser (unittest.TestCase):
         A test method for checking if we can remove a user from our list
         """
         self.new_user.save_user()
-        test_user =User("Instagram", "Duke","12345")
+        test_user =User("NightKing", "Duke","12345","email")
         test_user.save_user()
         self.new_user.delete_user()
         self.assertEqual(len(User.user_list),1)
+    def test_find_user_by_username(self):
+        """
+        A test to confirm if we can find a user using their username
+        """
+        self.new_user.save_user()
+        test_user = User("NightKing", "Duke", "12345","email")
+        test_user.save_user()
+        found_user = User.find_by_username("NightKing")
+        self.assertEqual(found_user.email, test_user.email)
 if __name__ == '__main__':
     unittest.main()
