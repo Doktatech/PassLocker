@@ -9,6 +9,11 @@ class TestUser (unittest.TestCase):
         First test to check if object is being initialized
         """
         self.new_user= User ("Instagram", "Duke", "12345")
+    def tearDown(self):
+        """
+        This method cleans up everything after each test
+        """
+        User.user_list= []
     def test_save_user(self):
         """
         Test if the app is saving users into the list
