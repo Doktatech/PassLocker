@@ -30,6 +30,15 @@ class User :
         for user in cls.user_list:
             if user.username ==username:
                 return user
+    @classmethod
+    def user_exists(cls,account):
+        for user in cls.user_list:
+            if user.account == account:
+                return True
+        
+        return False
+    
+
 
     
     
