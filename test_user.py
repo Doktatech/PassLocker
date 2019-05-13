@@ -1,4 +1,5 @@
 import unittest
+import pyperclip
 from user import User 
 class TestUser (unittest.TestCase):
     """
@@ -57,6 +58,12 @@ class TestUser (unittest.TestCase):
         Test method that returns all users in the list
         """
         self.assertEqual(User.display_users(),User.user_list)
-
+    def test_copy_username(self):
+        """
+        Test to confirm that username is being copied from the contact found
+        """
+        self.new_user.save_user()
+        User.copy_username("Duke")    
+        self.assertEqual(self.new_user.username,pyperclip.paste())
 if __name__ == '__main__':
     unittest.main()
